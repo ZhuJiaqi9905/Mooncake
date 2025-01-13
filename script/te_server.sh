@@ -9,4 +9,5 @@ export CUDA_PATH=/usr/local/cuda
     --metadata_server=10.20.23.91:2379 \
     --local_server_name=172.21.0.91:12345 \
     --device_name=mlx5_0 \
-    -use_vram false
+    -use_vram false \
+    -metadata_type redis \
