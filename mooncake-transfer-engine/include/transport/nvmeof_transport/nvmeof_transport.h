@@ -27,7 +27,7 @@
 #include "cufile_desc_pool.h"
 #include "transfer_metadata.h"
 #include "transport/transport.h"
-
+using std::string;
 namespace mooncake {
 class NVMeoFTransport : public Transport {
    public:

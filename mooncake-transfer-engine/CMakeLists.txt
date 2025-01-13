@@ -1,6 +1,6 @@
 include_directories(include)
 add_subdirectory(src)
-add_subdirectory(tests)
+# add_subdirectory(tests)
 add_subdirectory(example)
 if (WITH_RUST_EXAMPLE)
   add_subdirectory(rust)

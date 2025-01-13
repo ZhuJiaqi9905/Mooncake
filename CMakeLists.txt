@@ -24,10 +24,10 @@ add_definitions(-DCONFIG_ERDMA)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-option(USE_CUDA "option for using gpu direct" OFF)
+option(USE_CUDA "option for using gpu direct" ON)
 option(USE_CXL "option for using cxl protocol" OFF)
-option(USE_REDIS "option for enable redis support" OFF)
-
+option(USE_REDIS "option for enable redis support" ON)
+option(USE_ETCD "option for enable etcd support" OFF)
 option(WITH_P2P_STORE "build p2p store library and sample code" OFF)
 option(WITH_RUST_EXAMPLE "build the Rust interface and sample code for the transfer engine" OFF)
 
@@ -42,11 +42,16 @@ if (USE_REDIS)
   message(STATUS "Redis support is enabled")
 endif()
 
+if (USE_ETCD)
+  add_compile_definitions(USE_ETCD)
+  message(STATUS "Etcd support is enabled")
+endif()
+
 add_subdirectory(mooncake-transfer-engine)
 
 include_directories(mooncake-transfer-engine/include)
 
-add_subdirectory(mooncake-integration)
+# add_subdirectory(mooncake-integration)
 
 if (WITH_P2P_STORE AND USE_CUDA)
   message(FATAL_ERROR "Cannot enable both WITH_P2P_STORE and USE_CUDA at the same time.")

@@ -102,6 +102,7 @@ In addition, to support more features of Mooncake Transfer Engine, we *recommand
   # Adding CUDA to PATH
   export PATH=/usr/local/cuda/bin:$PATH
   export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+  export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/cuda/lib64
   export CUDA_PATH=/usr/local/cuda
   ```
 - Go 1.20+, if you want to build with `-DWITH_P2P_STORE`. You may download it from [here](https://go.dev/dl/).

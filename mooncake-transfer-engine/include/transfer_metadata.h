@@ -21,7 +21,9 @@
 
 #include <atomic>
 #include <cstdint>
+#ifdef USE_ETCD
 #include <etcd/SyncClient.hpp>
+#endif
 #include <functional>
 #include <memory>
 #include <string>

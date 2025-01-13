@@ -112,6 +112,7 @@ struct TransferMetadataImpl4Redis : public TransferMetadataImpl {
 };
 #endif // USE_REDIS
 
+#ifdef USE_ETCD
 struct TransferMetadataImpl4Etcd : public TransferMetadataImpl {
     TransferMetadataImpl4Etcd(const std::string &metadata_uri)
         : client_(metadata_uri), metadata_uri_(metadata_uri) {}
@@ -165,24 +166,29 @@ struct TransferMetadataImpl4Etcd : public TransferMetadataImpl {
     etcd::SyncClient client_;
     const std::string metadata_uri_;
 };
+#endif // USE_ETCD
 
 TransferMetadata::TransferMetadata(const std::string &metadata_uri, const std::string &protocol)
     : listener_running_(false) {
+#ifdef USE_ETCD
     if (protocol == "etcd") {
         impl_ = std::make_shared<TransferMetadataImpl4Etcd>(metadata_uri);
         if (!impl_) {
             LOG(ERROR) << "Cannot allocate TransferMetadataImpl objects";
             exit(EXIT_FAILURE);
         }
+    }
+#endif
 #ifdef USE_REDIS
-    } else if (protocol == "redis") {
+    if (protocol == "redis") {
         impl_ = std::make_shared<TransferMetadataImpl4Redis>(metadata_uri);
         if (!impl_) {
             LOG(ERROR) << "Cannot allocate TransferMetadataImpl objects";
             exit(EXIT_FAILURE);
         }
+    }
 #endif // USE_REDIS
-    } else {
+    if(protocol != "etcd" && protocol != "redis") {
         LOG(ERROR) << "Unsupported metdata protocol " << protocol;
         exit(EXIT_FAILURE);
     }

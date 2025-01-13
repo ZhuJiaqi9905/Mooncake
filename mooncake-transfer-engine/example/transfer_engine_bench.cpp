@@ -40,7 +40,7 @@ static void checkCudaError(cudaError_t result, const char *message) {
 }
 
 #endif
-
+using std::string;
 #define NR_SOCKETS (2)
 
 static std::string getHostname();
@@ -306,6 +306,7 @@ int initiator() {
 }
 
 int target() {
+    // register CPU memory and sleep
     auto metadata_client =
         std::make_shared<TransferMetadata>(FLAGS_metadata_server, FLAGS_metadata_type);
     LOG_ASSERT(metadata_client);
