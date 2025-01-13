@@ -128,7 +128,17 @@ In addition, to support more features of Mooncake Transfer Engine, we *recommand
    cmake .. # (optional) Specify build options like -D
    make -j
    ```
-
+4. Redis server
+  - version 2.0.4
+  - If compiling error with "undefined reference to 'log'", change MakeFile:
+  ```
+ redis-server: $(OBJ)
+-       $(CC) -o $(PRGNAME) $(CCOPT) $(DEBUG) $(OBJ)
++       $(CC) -o $(PRGNAME) $(DEBUG) $(OBJ) $(CCOPT)
+        @echo ""
+        @echo "Hint: To run the test-redis.tcl script is a good idea."
+        @echo "Launch the redis server with ./redis-server, then in another"
+  ```
 
 
 <h2 id="milestones"> 🛣️ Incoming Milestones</h2>
