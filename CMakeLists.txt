@@ -3,9 +3,9 @@ project(mooncake CXX C)
 
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra -Wno-unused-parameter -fPIC")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -Wall -Wextra -Wno-unused-parameter -fPIC")
+# remove -g option
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -Wall -Wextra -Wno-unused-parameter -fPIC")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall -Wextra -Wno-unused-parameter -fPIC")
 
 set(CMAKE_C_FLAGS_RELEASE "-O3")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
@@ -30,6 +30,9 @@ option(USE_REDIS "option for enable redis support" ON)
 option(USE_ETCD "option for enable etcd support" OFF)
 option(WITH_P2P_STORE "build p2p store library and sample code" OFF)
 option(WITH_RUST_EXAMPLE "build the Rust interface and sample code for the transfer engine" OFF)
+
+link_directories(/data/home/scyb091/.opt/lib)
+include_directories(/data/home/scyb091/.opt/include)
 
 if (USE_CUDA)
   add_compile_definitions(USE_CUDA)
