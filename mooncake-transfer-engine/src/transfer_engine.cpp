@@ -161,14 +161,14 @@ Transport *TransferEngine::initTransport(const char *proto) {
     } else if (std::string(proto) == "tcp") {
         return new TcpTransport();
     }
-#ifdef USE_CUDA
-    else if (std::string(proto) == "nvmeof") {
-        return new NVMeoFTransport();
-    }
-#endif
     else {
         LOG(ERROR) << "Unsupported Transport Protocol: " << proto;
         return NULL;
     }
+// #ifdef USE_CUDA
+//     else if (std::string(proto) == "nvmeof") {
+//         return new NVMeoFTransport();
+//     }
+// #endif
 }
 }  // namespace mooncake
