@@ -32,6 +32,7 @@ option(WITH_P2P_STORE "build p2p store library and sample code" OFF)
 option(WITH_RUST_EXAMPLE "build the Rust interface and sample code for the transfer engine" OFF)
 
 link_directories(/data/home/scyb091/.opt/lib)
+link_directories(/data/apps/cuda/12.1/targets/x86_64-linux/lib/stubs/)
 include_directories(/data/home/scyb091/.opt/include)
 
 if (USE_CUDA)
