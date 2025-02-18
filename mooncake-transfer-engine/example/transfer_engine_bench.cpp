@@ -92,6 +92,7 @@ static void *allocateMemoryPool(size_t size, int socket_id,
         checkCudaError(cudaSetDevice(gpu_id), "Failed to set device");
         checkCudaError(cudaMalloc(&d_buf, size),
                        "Failed to allocate device memory");
+        LOD(INFO) << "Allocated " << size << " bytes on GPU " << gpu_id;
         return d_buf;
     }
 #endif
